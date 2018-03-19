@@ -14,6 +14,12 @@ But it uses a lot of resources when directory structure is deep.
 Because it search all of directories at first.
 So, I wrote ruby program which can display directory structure in any hierarchy. 
 
+## Usage
+
+## Demo program
+
+
+
 <!--
 ## Installation
 
@@ -31,9 +37,6 @@ Or install it yourself as:
 
     $ gem install r_tree
 
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 

@@ -2,9 +2,11 @@ require_relative './lib/r_tree.rb'
 
 #Should write exception handling
 
+$SAMPLE_PATH='./spec/test_dir'
+
 if ARGV[0]=~/^[0-9]+$/ then
   #This path is for testing
-  path=File.expand_path('../../')
+  path=File.expand_path($SAMPLE_PATH)
   layer=ARGV[0].to_i
 else
   if Dir.exist?(ARGV[0]) then
@@ -15,5 +17,6 @@ else
   end
 end
 
-RTree.tree(path,Array.new ,layer)
-
+RTree.tree(path,layer).each{|s|
+  puts s
+}
