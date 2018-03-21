@@ -19,6 +19,6 @@ end
 #This path is for testing
 path=File.expand_path($SAMPLE_PATH) if path==nil
 
-RTree.tree(path,layer).each{|s|
+RTree.ftree(path,layer).each{|s|
   puts s
 }
