@@ -6,17 +6,16 @@ RSpec.describe RTree do
   end
 
   it 'returns array which has correct number of lines' do
-    expect(RTree.tree($SAMPLE_PATH,1).size).to eq 4
-    expect(RTree.tree($SAMPLE_PATH,2).size).to eq 6
-    expect(RTree.tree($SAMPLE_PATH,3).size).to eq 8
+    expect(RTree.get($SAMPLE_PATH,1).to_s.size).to eq 4
+    expect(RTree.get($SAMPLE_PATH,2).to_s.size).to eq 6
+    expect(RTree.get($SAMPLE_PATH,3).to_s.size).to eq 8
   end
-
 
   #Because .rspec_status will generated in test directry, this test will fail from 2nd exection.
   #It must be corrected.
   it 'returns array which has correct number of lines (output with files)' do
-    expect(RTree.ftree($SAMPLE_PATH,1).size).to eq 4
-    expect(RTree.ftree($SAMPLE_PATH,2).size).to eq 8
-    expect(RTree.ftree($SAMPLE_PATH,3).size).to eq 11
+    expect(RTree.get($SAMPLE_PATH,1).to_s(:f).size).to eq 6
+    expect(RTree.get($SAMPLE_PATH,2).to_s(:f).size).to eq 9
+    expect(RTree.get($SAMPLE_PATH,3).to_s(:f).size).to eq 13
   end
 end

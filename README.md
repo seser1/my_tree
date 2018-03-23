@@ -15,31 +15,37 @@ Because it search all of directories at first.
 So, I wrote ruby program which can display directory structure in any hierarchy. 
 
 ## Usage
-Module RTree includes methods tree(only for directory) and ftree(including files).
-They returns array which contains strings to output.
+'get' method returns instance of rtree, it contains data of directory structure.
+With 'to_s' method, you can gain array which contains strings that indicate directory structure.
 If you want to output directory structure from the directory [path] and number of hierarchy [layer], write like these.
 ```ruby
 require 'r_tree'
 
-#Outputs directories
-RTree.tree(path,layer).each{|s| puts s}
+#Get instance
+tree=RTree.get(path,layer)
 
-#Outputs including files
-RTree.ftree(path,layer).each{|s| puts s}
+
+#Output directories
+tree.to_s.each{|s| puts s}
+
+#Output directories and files
+tree.to_s(:f).each{|s| puts s}
+
 ```
 
 
 ## Sample program
-sample.rb and sample_f.rb are sample program.
+sample.rb is sample program.
 Execute it as below
 ```executing
->ruby sample.rb root_path number_of_hierarchy
+>ruby sample.rb root_path number_of_hierarchy with_file?(-f)
 ```
-sample.rb outputs only directories sample_f.rb includes files.
 Without root_path option, it uses sample directory (./test_dir/)
+'number_of_hierarchy' is max layer of directory.
+With -f option, it outputs not only directories but also files in them.
 Below is sample of output.
 ```Executing sample
-r_tree> ruby ./sample_f.rb 3
+r_tree> ruby ./sample_f.rb 3 -f
 test_dir
 ├─ 1
 │  test1
@@ -50,7 +56,9 @@ test_dir
    │  test3
    └─ 5
       ├─ 6
+      │  test4
       └─ 7
+         test5
 ```
 
 <!--
