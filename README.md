@@ -31,14 +31,21 @@ tree.to_s.each{|s| puts s}
 #Output directories and files
 tree.to_s(:f).each{|s| puts s}
 
+
+#Get json formatted directory structure
+js=tree.to_json
+#You can use JSON-methods for general object (e.g. pretty_generate)
+pjs=JSON.pretty_gerate(tree)
+
 ```
 
 
 ## Sample program
-sample.rb is sample program.
+sample.rb and sample_j are sample programs.
 Execute it as below
 ```executing
 >ruby sample.rb root_path number_of_hierarchy with_file?(-f)
+>ruby sample_j.rb root_path number_of_hierarchy
 ```
 Without root_path option, it uses sample directory (./test_dir/)
 'number_of_hierarchy' is max layer of directory.
@@ -59,6 +66,9 @@ test_dir
       │  test4
       └─ 7
          test5
+
+r_tree> ruby ./sample_j.rb 2
+{"name":"test_dir","childs":[{"name":"1","childs":[],"files":["test1"]},{"name":"2","childs":[],"files":["test2"]},{"name":"3","childs":[{"name":"4","childs":[],"files":["test3"]},{"name":"5","childs":[],"files":[]}],"files":[]}],"files":[]}
 ```
 
 <!--

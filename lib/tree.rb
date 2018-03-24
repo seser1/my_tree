@@ -1,3 +1,5 @@
+require 'json'
+
 #layer_list_last 1:line continues 0:line end
 $LL=['└─ ', '├─ ']
 #layer_list_middle 1:line continued 0:line ended
@@ -5,11 +7,25 @@ $LM=['   ', '│  ']
 
 #Class for storing directory structure
 class MDir
-  attr_accessor :name, :childs, :files, :depth
+  attr_accessor :name, :childs, :files
 
   def initialize(name)
     @name=name
     @childs,@files=[],[]
+  end
+
+  #Create hash of the class
+  def as_json
+    {
+      name: @name,
+      childs: @childs,
+      files: @files
+    }
+  end
+
+  #Override to_json
+  def to_json(**opt)
+    as_json.to_json(opt)
   end
 end
 
@@ -40,7 +56,7 @@ class Tree
 
   #Return array of string
   def to_s(file=nil)
-    return s_rec(Array.new(0), @root, file).flatten
+    s_rec(Array.new(0), @root, file).flatten
   end
 
   #Recursively generate array of string
@@ -70,6 +86,11 @@ class Tree
     end
 
     return s
+  end
+
+  #Return json formatted hash of the class
+  def to_json(**opt)
+    @root.to_json(opt)
   end
 
 end
