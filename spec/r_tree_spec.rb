@@ -18,4 +18,30 @@ RSpec.describe RTree do
     expect(RTree.get($SAMPLE_PATH,2).to_s(:f).size).to eq 9
     expect(RTree.get($SAMPLE_PATH,3).to_s(:f).size).to eq 13
   end
+
+  it 'returns correct formatted json' do
+    hs=JSON.parse(RTree.get($SAMPLE_PATH,3).to_json)
+
+    #Root directory is 'test_dir'
+    expect(hs['name']).to eq 'test_dir'
+
+    #test_dir/3/5/7/test5
+    ch=nil
+    hs['childs'].each{|ch1|
+      if ch1['name']=='3' then
+        ch1['childs'].each{|ch2|
+          if ch2['name']=='5' then
+            ch2['childs'].each{|ch3|
+              ch=ch3 if ch3['name']=='7'
+            }
+          end
+        }
+      end
+    }
+    expect(ch['files'][0]).to eq 'test5'
+
+  end
+
+
+  
 end

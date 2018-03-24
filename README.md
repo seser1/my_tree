@@ -1,7 +1,5 @@
 # RTree
 
-***under implementing***
-
 On windows, there is no command that displaies directory structure in any hierarchy.
 (There is tree command, but has no option about directory hierarchy)
 
